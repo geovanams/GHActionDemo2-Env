@@ -20,7 +20,7 @@ env: #env workflow level
 jobs:
   Dev:
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' & github.event.inputs.environment == 'Dev'
     environment: Dev #1-set env job
     steps:
       - run: echo "🧪 Testing..."
