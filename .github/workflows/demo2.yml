@@ -18,6 +18,22 @@ env: #env workflow level
   MY_WORKFLOW_VAR: 'Worlflow variavel' 
   
 jobs:
+  Dev:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    environment: Dev #1-set env job
+    steps:
+      - run: echo "🧪 Testing..."
+      - name: Use secrets and environment variables
+        env: #env step level
+          MY_SECRET: ${{ secrets.DEV_SECRET }} # Explicitly passing the secret
+          MY_VAR: ${{ vars.DEV_VAR }}         # Explicitly passing the variable
+        run: |
+          echo "MY_VAR is: $MY_VAR"
+          echo "MY_SECRET is: $MY_SECRET"
+          echo "MY_REPO_SECRET is: ${{ secrets.MY_REPO_SECRET }}"
+          echo "MY_REPO_VAR is:  ${{ vars.MY_REPO_VAR }}"
+          echo "MY WORKFLOW VAR is: $MY_WORKFLOW_VAR"
   Test:
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch'
@@ -37,4 +53,5 @@ jobs:
           echo "MY_REPO_SECRET is: $REPO_SECRET"
           echo "MY_REPO_VAR is: $REPO_VAR"
           echo "MY WORKFLOW VAR is: $MY_WORKFLOW_VAR"
+          
 
