@@ -38,13 +38,6 @@ jobs:
         with:
           secret: ${{ github.TOKEN }}
           approvers: geovanams
-          minimum-approvals: 1
-          issue-title: "Deploying v1.3.5 to prod from staging"
-          issue-body: "Please approve or deny the deployment of version v1.3.5."
-          exclude-workflow-initiator-as-approver: false
-          fail-on-denial: true
-          additional-approved-words: ''
-          additional-denied-words: ''
   Test:
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch'
