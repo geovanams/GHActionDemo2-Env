@@ -27,7 +27,7 @@ jobs:
   Dev:
     runs-on: ubuntu-latest
     #if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'Dev'
-    if: ${{ inputs.package == 'true' }}
+    if: ${{ inputs.package }}
     environment: Dev #1-set env job
     steps:
       - run: echo "🧪 Testing..."
