@@ -14,13 +14,20 @@ on:
         description: 'Environment to deploy to'
         type: environment
         required: true
+      package:
+        description: 'Environment to deploy to'
+        type: boolean
+        required: true
+        default: false
 env: #env workflow level
   MY_WORKFLOW_VAR: 'Worlflow variavel' 
+  
   
 jobs:
   Dev:
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'Dev'
+    #if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'Dev'
+    if: ${{ inputs.execute_publish == 'true') }}
     environment: Dev #1-set env job
     steps:
       - run: echo "🧪 Testing..."
