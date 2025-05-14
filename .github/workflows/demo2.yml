@@ -15,7 +15,7 @@ on:
         type: environment
         required: true
       package:
-        description: 'Environment to deploy to'
+        description: 'package'
         type: boolean
         required: true
         default: false
